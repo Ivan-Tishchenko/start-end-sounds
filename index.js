@@ -1,6 +1,5 @@
 Howler.html5 = true;
 
-
 // create objects to "start" and "end"
 const startSound = new Howl({
   src: ["./sounds/start.mp3"],
@@ -56,6 +55,25 @@ function playSimultaneously(numInstances) {
 Howler.autoUnlock = false;
 
 const button = document.querySelector(".test-button");
+
+// Function to test with different sets
+function testSets(numSets) {
+  let currentSet = 0;
+
+  function playSet() {
+    if (currentSet < numSets) {
+      playSimultaneously(currentSet + 1);
+      setTimeout(() => {
+        currentSet++;
+        playSet();
+      }, startSound.duration() * 1000); // Wait for the duration of 'start' sound
+    }
+  }
+
+  playSet();
+}
+
 button.addEventListener("click", () => {
-  playSequentially(); // Play 'start' and 'end' sequentially
+  const setNumber = document.querySelector(".number").value;
+  testSets(setNumber || 1); // Test with 1 set
 });
