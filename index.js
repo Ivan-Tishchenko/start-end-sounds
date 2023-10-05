@@ -30,13 +30,17 @@ function playSequentially() {
 }
 
 // Function to play multiple instances of 'start' and 'end' sounds simultaneously
-function playSimultaneously() {
-  new Howl({
+function playSimultaneously(deley) {
+  const start = new Howl({
     src: ["./sounds/start.mp3"],
-  }).play();
-  new Howl({
+  });
+  const end = new Howl({
     src: ["./sounds/end.mp3"],
-  }).play();
+  });
+  setTimeout(() => {
+    start.play();
+    end.play();
+  }, 30 * deley);
 }
 
 // Initializing Howler.js
@@ -47,10 +51,8 @@ const button = document.querySelector(".test-button");
 // Function to test with different sets
 function testSets(numSets) {
   for (let i = 0; i < numSets; i++) {
-    playSimultaneously();
-    setTimeout(() => {
-      playSet();
-    }, startSound.duration() * 1000); // Wait for the duration of 'start' sound
+    playSimultaneously(i);
+    setTimeout(() => {}, startSound.duration() * 1000); // Wait for the duration of 'start' sound
   }
 }
 
@@ -58,6 +60,5 @@ button.addEventListener("click", () => {
   const setNumber = parseInt(
     document.querySelector(".number").value
   );
-  console.log(setNumber);
   testSets(setNumber || 1); // Test with 1 set
 });
