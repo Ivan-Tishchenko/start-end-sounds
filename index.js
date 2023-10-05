@@ -77,5 +77,6 @@ button.addEventListener("click", () => {
   const setNumber = parseInt(
     document.querySelector(".number").value
   );
+  console.log(setNumber);
   testSets(setNumber || 1); // Test with 1 set
 });
