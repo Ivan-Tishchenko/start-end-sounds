@@ -40,7 +40,7 @@ function playSimultaneously(deley) {
   setTimeout(() => {
     start.play();
     end.play();
-  }, 30 * deley);
+  }, deley);
 }
 
 // Initializing Howler.js
@@ -50,8 +50,11 @@ const button = document.querySelector(".test-button");
 
 // Function to test with different sets
 function testSets(numSets) {
+  const deleyCoficient = parseInt(
+    document.querySelector(".deley").value
+  );
   for (let i = 0; i < numSets; i++) {
-    playSimultaneously(i);
+    playSimultaneously((deleyCoficient || 35) * i);
     setTimeout(() => {}, startSound.duration() * 1000); // Wait for the duration of 'start' sound
   }
 }

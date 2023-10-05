@@ -15,15 +15,33 @@ https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js
     <script type="module" src="index.js"></script>
   </head>
   <body>
-    <input
-      type="text"
-      min="1"
-      max="25"
-      class="number"
-      placeholder="enter number set. default 1"
-      width="300px"
-    />
-    <button class="test-button">click to test</button>
+    <div style="display: flex; flex-direction: column">
+      <label for="deley"
+        >number of milliseconds between starts. default =
+        35</label
+      >
+      <input
+        type="text"
+        id="deley"
+        class="deley"
+        width="100%"
+        display="block"
+        box-sizing="border-box"
+      />
+      <label for="number"
+        >enter number set. default 1</label
+      >
+      <input
+        type="text"
+        id="number"
+        min="1"
+        max="25"
+        class="number"
+      />
+      <button class="test-button" style="margin-top: 10px">
+        click to test
+      </button>
+    </div>
     <!-- <script type="module" src="./index.js"></script> -->
   </body>
 </html>
