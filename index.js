@@ -30,25 +30,13 @@ function playSequentially() {
 }
 
 // Function to play multiple instances of 'start' and 'end' sounds simultaneously
-function playSimultaneously(numInstances) {
-  const startSounds = [];
-  const endSounds = [];
-
-  for (let i = 0; i < numInstances; i++) {
-    startSounds.push(
-      new Howl({
-        src: ["./sounds/start.mp3"],
-      })
-    );
-    endSounds.push(
-      new Howl({
-        src: ["./sounds/end.mp3"],
-      })
-    );
-  }
-
-  startSounds.forEach((sound) => sound.play());
-  endSounds.forEach((sound) => sound.play());
+function playSimultaneously() {
+  new Howl({
+    src: ["./sounds/start.mp3"],
+  }).play();
+  new Howl({
+    src: ["./sounds/end.mp3"],
+  }).play();
 }
 
 // Initializing Howler.js
@@ -58,19 +46,12 @@ const button = document.querySelector(".test-button");
 
 // Function to test with different sets
 function testSets(numSets) {
-  let currentSet = 0;
-
-  function playSet() {
-    if (currentSet < numSets) {
-      playSimultaneously(currentSet + 1);
-      setTimeout(() => {
-        currentSet++;
-        playSet();
-      }, startSound.duration() * 1000); // Wait for the duration of 'start' sound
-    }
+  for (let i = 0; i < numSets; i++) {
+    playSimultaneously();
+    setTimeout(() => {
+      playSet();
+    }, startSound.duration() * 1000); // Wait for the duration of 'start' sound
   }
-
-  playSet();
 }
 
 button.addEventListener("click", () => {
