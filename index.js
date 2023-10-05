@@ -50,11 +50,12 @@ const button = document.querySelector(".test-button");
 
 // Function to test with different sets
 function testSets(numSets) {
-  const deleyCoficient = parseInt(
+  const deley = parseInt(
     document.querySelector(".deley").value
   );
+  console.log(deley);
   for (let i = 0; i < numSets; i++) {
-    playSimultaneously((deleyCoficient || 35) * i);
+    playSimultaneously((deley || 35) * i);
     setTimeout(() => {}, startSound.duration() * 1000); // Wait for the duration of 'start' sound
   }
 }
